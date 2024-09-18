@@ -5,9 +5,10 @@ import sys
 
 sys.path.append("../..")
 # sys.path.append("..")
-#
 
-NUMBER_OF_FUNC_CALLS = 100000
+import Test.Model as model
+
+NUMBER_OF_FUNC_CALLS = 100
 
 print("timing calculateSeries")
 
@@ -15,9 +16,9 @@ print(
     "Model:       ",
     min(
         timeit.repeat(
-            "calculateSeries([1.0, 1.5, 2.2, 3.3, 4.7, 6.8],6.28)",
+            "calculateSeries(model.E_192,6.28)",
             number=NUMBER_OF_FUNC_CALLS,
-            setup="from Test.Model.core import calculateSeries",
+            setup="import Test.Model.eseries as model;from Test.Model.core import calculateSeries",
         )
     )
     / NUMBER_OF_FUNC_CALLS
@@ -28,9 +29,9 @@ print(
     "PassiveComp: ",
     min(
         timeit.repeat(
-            "calculateSeries([1.0, 1.5, 2.2, 3.3, 4.7, 6.8],6.28)",
+            "calculateSeries(model.E_192,6.28)",
             number=NUMBER_OF_FUNC_CALLS,
-            setup="from PassiveComp.core import calculateSeries",
+            setup="import Test.Model.eseries as model; from PassiveComp.core import calculateSeries",
         )
     )
     / NUMBER_OF_FUNC_CALLS
