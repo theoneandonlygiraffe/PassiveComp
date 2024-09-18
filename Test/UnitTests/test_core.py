@@ -28,6 +28,74 @@ class TestCreateSeries(unittest.TestCase):
     def test_happyPathE192compareToModel_shouldAssertEqual(self):
         self.assertEqual(model.E_192, passiveComp.createSeries(192))
 
+    def test_invalidParameter_negative_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(-6)
+
+    def test_invalidParameter_0_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(0)
+
+    def test_invalidParameter_float_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(3.3)
+
+    def test_invalidParameter_2_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(2)
+
+    def test_invalidParameter_4_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(4)
+
+    def test_invalidParameter_5_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(5)
+
+    def test_invalidParameter_7_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(7)
+
+    def test_invalidParameter_11_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(11)
+
+    def test_invalidParameter_13_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(13)
+
+    def test_invalidParameter_23_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(23)
+
+    def test_invalidParameter_25_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(25)
+
+    def test_invalidParameter_47_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(47)
+
+    def test_invalidParameter_49_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(49)
+
+    def test_invalidParameter_95_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(95)
+
+    def test_invalidParameter_97_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(97)
+
+    def test_invalidParameter_191_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(191)
+
+    def test_invalidParameter_193_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            passiveComp.createSeries(193)
+
 
 class TestCalculateSeries(unittest.TestCase):
     def test_happyPathcompareToModel_E3Target3_shouldAssertEqual(self):
