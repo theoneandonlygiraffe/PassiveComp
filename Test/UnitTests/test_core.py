@@ -37,7 +37,7 @@ class TestCreateSeries(unittest.TestCase):
             passiveComp.createSeries(0)
 
     def test_invalidParameter_float_shouldThrow(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             passiveComp.createSeries(3.3)
 
     def test_invalidParameter_2_shouldThrow(self):
