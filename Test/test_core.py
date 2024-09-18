@@ -46,34 +46,48 @@ class TestCalculateSeries(unittest.TestCase):
     def test_happyPathcompareToModel_E3Target3_shouldAssertEqual(self):
         eSeries = e3
         targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.0, 2.2, 3.2)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
 
     def test_happyPathcompareToModel_E6Target3_shouldAssertEqual(self):
         eSeries = e6
-        targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        targetValue = 6.28
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.5, 4.7, 6.2)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
 
     def test_happyPathcompareToModel_E12Target3_shouldAssertEqual(self):
         eSeries = e12
-        targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        targetValue = 8.3
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.5, 6.8, 8.3)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
 
     def test_happyPathcompareToModel_E24Target3_shouldAssertEqual(self):
         eSeries = e24
-        targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        targetValue = 9
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.5, 7.5, 9.0)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
 
     def test_happyPathcompareToModel_E48Target3_shouldAssertEqual(self):
         eSeries = e48
-        targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        targetValue = 6.28
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.15, 5.11, 6.3)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
 
     def test_happyPathcompareToModel_E96Target3_shouldAssertEqual(self):
         eSeries = e96
-        targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        targetValue = 2.465
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.0, 1.47, 2.5)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
 
     def test_happyPathcompareToModel_E192Target3_shouldAssertEqual(self):
         eSeries = e192
         targetValue = 3.14
-        self.assertEqual(Model.calculateSeries(eSeries,targetValue), PassiveComp.calculateSeries(eSeries,targetValue))
+        #modelOutput = Model.calculateSeries(eSeries,targetValue)
+        modelOutput = (1.0, 2.08, 3.1)
+        self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
