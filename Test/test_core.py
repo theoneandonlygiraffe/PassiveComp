@@ -91,3 +91,15 @@ class TestCalculateSeries(unittest.TestCase):
         #modelOutput = Model.calculateSeries(eSeries,targetValue)
         modelOutput = (1.0, 2.08, 3.1)
         self.assertEqual(modelOutput, PassiveComp.calculateSeries(eSeries,targetValue))
+
+    def test_emptyList_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            PassiveComp.calculateSeries([],3.14)
+
+    def test_underMinValue_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            PassiveComp.calculateSeries(e3,(e3[0]*2)-1.1) #or just 0 as min value?
+
+    def test_overMaxValue_shouldThrow(self):
+        with self.assertRaises(ValueError):
+            PassiveComp.calculateSeries(e3,(e3[-1]*2)+1.1)
