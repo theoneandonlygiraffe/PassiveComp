@@ -1,4 +1,5 @@
-# to run tests python3 -m unittest Test.test_core from root dir
+# to run tests python3 -m unittest Test.UnitTests.test_core from root dir
+# python3 -m unittest Test.UnitTests.test_core 2>&1 | grep -A 10 ERROR
 
 import unittest
 

@@ -62,23 +62,50 @@ def calculateSeries(list2, value):
     caculates the best combination of values from list to archive value with value = r1 + r2
     returns a touple with length 3. The 2 resistor values and achieved Resistance
     """
-    # todo : minimize result matrix, add zero and infinity
-    #
-    list = np.array(list2)
 
+    list = np.array([0] + list2 + [np.inf])
+    # todo : minimize result matrix, add zero and infinity
+
+    # calculate best solution with 1 component
+    resultVec = np.add(list, np.zeros(list.size))
+    valueVec = np.full(resultVec.shape, value)
+    singleComponentErrorsVec = np.abs(np.subtract(valueVec, resultVec))
+    maxY = np.argmin(singleComponentErrorsVec)
+
+    # calculate best solutuion wit equal components (diagonal)
+    resultVec = np.add(list, list)
+    valueVec = np.full(resultVec.shape, value)
+    equalComponentErrorsVec = np.abs(np.subtract(valueVec, resultVec))
+    maxX = np.argmin(equalComponentErrorsVec)
+
+    # print("target: ", value, " len list: ", list.size, " maxX: ", maxX, " maxY: ", maxY)
+    # print(list2)
+    # print(list)
     # calc (minimized) result matrix
-    horizontal = np.tile(list, (list.size, 1))
-    vertical = np.transpose(horizontal)
+    # horizontal = np.tile(list, (list.size, 1))
+    # vertical = np.transpose(horizontal)
+
+    horizontal = np.tile(list[0:maxX], (maxY - maxX, 1))
+    vertical = np.transpose(np.tile(list[maxX:maxY], (maxX, 1)))
+
+    # print("h", horizontal)
+    # print("v", vertical)
 
     resultMatrix = np.add(horizontal, vertical)
 
+    # print("r", resultMatrix)
+
     # calc error matrix
     targetMatrix = np.full(resultMatrix.shape, value)
+    errorMatrix = np.abs(np.subtract(resultMatrix, targetMatrix))
 
-    errorMatrix = np.abs(value - targetMatrix)
+    # print("e", errorMatrix)
 
     # get coordinates of min error
     xCords, yCords = np.where(errorMatrix == errorMatrix.min())
+
+    # print("x", xCords)
+    # print("y", yCords)
     # first coordinates are enough atm
     x = xCords[0]
     y = yCords[0]
