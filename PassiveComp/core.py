@@ -62,11 +62,11 @@ def calculateSeries(list2, value):
     caculates the best combination of values from list to archive value with value = r1 + r2
     returns a touple with length 3. The 2 resistor values and achieved Resistance
     """
-
+    # adapter to old interface
     list = np.array([0] + list2 + [np.inf])
-    # todo : minimize result matrix, add zero and infinity
 
-    # calculate best solution with 1 component
+    # --calculate minimized result Matrix--
+    # calculate best solution with one component
     resultVec = np.add(list, np.zeros(list.size))
     valueVec = np.full(resultVec.shape, value)
     singleComponentErrorsVec = np.abs(np.subtract(valueVec, resultVec))
@@ -78,45 +78,28 @@ def calculateSeries(list2, value):
     equalComponentErrorsVec = np.abs(np.subtract(valueVec, resultVec))
     maxX = np.argmin(equalComponentErrorsVec)
 
-    # print("target: ", value, " len list: ", list.size, " maxX: ", maxX, " maxY: ", maxY)
-    # print(list2)
-    # print(list)
-    # calc (minimized) result matrix
-    # horizontal = np.tile(list, (list.size, 1))
-    # vertical = np.transpose(horizontal)
-
+    # build resultMatrix that contains all RELEVANT combinations of components
     horizontal = np.tile(list[0:maxX], (maxY - maxX, 1))
     vertical = np.transpose(np.tile(list[maxX:maxY], (maxX, 1)))
 
-    # print("h", horizontal)
-    # print("v", vertical)
-
     resultMatrix = np.add(horizontal, vertical)
 
-    # print("r", resultMatrix)
-
-    # calc error matrix
+    # --calculate errorMatrix that contains errors for all relevant combinations
     targetMatrix = np.full(resultMatrix.shape, value)
     errorMatrix = np.abs(np.subtract(resultMatrix, targetMatrix))
 
-    # print("e", errorMatrix)
-
-    # get coordinates of min error
+    # --get coordinates of min error--
     xCords, yCords = np.where(errorMatrix == errorMatrix.min())
 
-    # print("x", xCords)
-    # print("y", yCords)
     # first coordinates are enough atm
     x = xCords[0]
     y = yCords[0]
 
-    # translate coordinates to values
+    # --translate coordinates to values and return--
     xVal = list[x]
     yVal = list[y]
     resultVal = resultMatrix[x, y]
 
-    # for x in range(xCords.size):
-    # print(list[xCords[x]], list[yCords[x]])
     return (xVal, yVal, resultVal)
 
 
